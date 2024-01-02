@@ -1,12 +1,12 @@
-﻿using MusicalChairs.Spotify.Models;
+﻿using MusicalChairs.Spotify.Interfaces;
+using MusicalChairs.Spotify.Models;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace MusicalChairs.Spotify;
 
-public class SpotifyTokenService
+public class SpotifyTokenService : ISpotifyTokenService
 {
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _configuration;
@@ -15,9 +15,9 @@ public class SpotifyTokenService
     private DateTime? _tokenExpirationDate = DateTime.MinValue;
 
 
-    public SpotifyTokenService(HttpClient httpClient, IConfiguration configuration)
+    public SpotifyTokenService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
     {
-        _httpClient = httpClient;
+        _httpClient = httpClientFactory.CreateClient();
         _httpClient.BaseAddress = new Uri("https://accounts.spotify.com/api/token");
         _configuration = configuration;
     }

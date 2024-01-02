@@ -1,5 +1,8 @@
 
+using MusicalChairs.Game;
+using MusicalChairs.Game.Interfaces;
 using MusicalChairs.Spotify;
+using MusicalChairs.Spotify.Interfaces;
 
 namespace MusicalChairs
 {
@@ -15,8 +18,10 @@ namespace MusicalChairs
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddHttpClient<SpotifyTokenService>();
-            builder.Services.AddHttpClient<SpotifyService>();
+            builder.Services.AddHttpClient();
+            builder.Services.AddSingleton<ISpotifyTokenService, SpotifyTokenService>();
+            builder.Services.AddSingleton<ISpotifyService, SpotifyService>();
+            builder.Services.AddSingleton<IGameService, GameService>();
 
             var app = builder.Build();
 
@@ -31,6 +36,7 @@ namespace MusicalChairs
 
             app.UseAuthorization();
 
+            app.UseWebSockets();
 
             app.MapControllers();
 
