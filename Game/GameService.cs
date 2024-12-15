@@ -41,6 +41,7 @@ public class GameService : IGameService
             return false;
         }
 
-        return game.AddPlayer2(clientId);
+        //return game.AddPlayer2(clientId);
+        return true;
     }
 }

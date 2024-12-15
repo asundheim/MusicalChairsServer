@@ -14,7 +14,6 @@ public class SpotifyTokenService : ISpotifyTokenService
     private string _token = string.Empty;
     private DateTime? _tokenExpirationDate = DateTime.MinValue;
 
-
     public SpotifyTokenService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
     {
         _httpClient = httpClientFactory.CreateClient();

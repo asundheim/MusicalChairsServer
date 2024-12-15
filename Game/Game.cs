@@ -83,6 +83,6 @@ public class Game : IGame
 
     public IEnumerable<SpotifyLink> TryAddAlbum(string albumId)
     {
-
+        return Enumerable.Empty<SpotifyLink>();
     }
 }

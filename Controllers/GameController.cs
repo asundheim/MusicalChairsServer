@@ -35,7 +35,7 @@ public class GameController : Controller
         {
             WebSocket webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
 
-            _gameService.JoinGame(gameId, webSocket);
+            _gameService.JoinGame(gameId,gameId, webSocket);
         }
     }
 }
